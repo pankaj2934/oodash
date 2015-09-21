@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% block content %}
+this is homepage . Thanks for loggin in : <h1>  {{ user.get_username }} </h1>
+
+    <a href="{% url 'homepage_logout' %}">logout</a>
+{% endblock %}

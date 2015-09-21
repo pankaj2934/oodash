@@ -40,6 +40,7 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
 
+
 )
 
 LOCAL_APPS = (
@@ -90,3 +91,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, "templates"),
+)
+AUTHENTICATION_BACKENDS = (
+    'django_auth_ldap.backend.LDAPBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+ #
+LOGIN_REDIRECT_URL="/home"
+import ldap
+from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
+# Baseline configuration.
+AUTH_LDAP_SERVER_URI = "LDAP://staplesams.com"
+
+AUTH_LDAP_BIND_DN =
+AUTH_LDAP_BIND_PASSWORD =
+AUTH_LDAP_USER_SEARCH = LDAPSearch("OU=AMS Users,DC=staplesams,DC=com",
+    ldap.SCOPE_SUBTREE, "(cn=%(user)s)")
